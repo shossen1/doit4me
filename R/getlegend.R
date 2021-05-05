@@ -9,4 +9,5 @@ legend <- g[[which(sapply(g, function(x) x$name) == "guide-box")]]
 lheight <- sum(legend$height)
 
 legend$heights[2] = unit(c(cm.height), "cm")
+return(legend)
 }
