@@ -1,6 +1,6 @@
 
 
-getlegend = function(plot, position, textsize, cm.height){
+getlegend = function(plot, position = "bottom", textsize = 18, cm.height = 1.5){
 library(ggplot2)
 
 g <- ggplotGrob(plot + theme(legend.position = position,
