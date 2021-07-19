@@ -1,7 +1,7 @@
 
 # This function compares two datasets and return the mismatched variables
 
-missmatch = function(a,b){
+missmatch_var = function(a,b){
   print("Present in dataset A but absent in dataset B")
   names(a)[!(names(a) %in% names(b))]
 
