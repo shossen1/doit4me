@@ -2,11 +2,11 @@
 ###         BA plot       ####
 ##############################
 
+library(BlandAltmanLeh)
+
 ba_rr <- bland.altman.stats(rad$radgrr1, rad$radgrr2)
 ba_mm <- bland.altman.stats(manual$manualrr1, manual$manualrr2)
 ba_means<- bland.altman.stats(bothrr$meanmanual, bothrr$meanrr)
-
-
 
 
 BA_SKR<-function(v1, v2,title='t',bias='b',test='bb',test2='nn', xname = 'v',yname = 'z',...){
