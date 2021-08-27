@@ -1,5 +1,6 @@
 
 
+
 crl_zscore = function(ga_days, crl){
   constant1 = -50.6562
   constant2 = 0.815118
@@ -10,10 +11,14 @@ crl_zscore = function(ga_days, crl){
   estimated_mean = constant1 + (constant2*ga_days) + (constant3*(ga_days^2))
   estimated_sd = constant4 + (constant5*ga_days)
 
-  crlz = round((crl - estimated_mean)/estimated_sd, 1)
+  crlz = (crl - estimated_mean)/estimated_sd
 
   message("Z-score calculation based on the Excel calculator developed by The INTERGROWTH-21ˢᵗ Consortium.
           https://intergrowth21.tghn.org/intergrowth-21st-applications/")
 
   return(crlz)
 }
+
+crl_zscore(111, 89.7)
+# crl_zscore(df$CRL_AVGC, df$M17_RC_GA_BY_MEASUREMENTS)
+
