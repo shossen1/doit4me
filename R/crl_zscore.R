@@ -7,9 +7,12 @@ crl_zscore = function(ga_days, crl){
   constant4 = -2.21626
   constant5 = 0.0984894
 
-  crlz = round((crl - ((constant1 +constant2*ga)+(constant3*ga^2)))/(constant4+ (constant5*ga)), 1)
+  estimated_mean = constant1 + (constant2*ga_days) + (constant3*(ga_days^2))
+  estimated_sd = constant4 + (constant5*ga_days)
 
-  message("Crown-Ramp Length (CRL) Z-score based on the Excel calculator developed by The INTERGROWTH-21ˢᵗ Consortium.
+  crlz = round((crl - estimated_mean)/estimated_sd, 1)
+
+  message("Z-score calculation based on the Excel calculator developed by The INTERGROWTH-21ˢᵗ Consortium.
           https://intergrowth21.tghn.org/intergrowth-21st-applications/")
 
   return(crlz)
