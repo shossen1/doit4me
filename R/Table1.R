@@ -2,6 +2,12 @@
 
 
 table1 = function(datain, varlist, group){
+
+ if("janitor" %in% rownames(installed.packages())){
+   library(janitor)
+ }else{message("Package janitor is required. Please install it.")}
+
+
   tab1 = NULL
   for(i in varlist){
     datain$var = datain[[i]]
