@@ -7,9 +7,9 @@ table1 = function(datain, varlist, group){
    library(janitor)
  }else{message("Package janitor is required. Please install it.")}
 
-  if("tidy" %in% rownames(installed.packages())){
-    library(janitor)
-  }else{message("Package tidy is required. Please install it.")}
+  if("broom" %in% rownames(installed.packages())){
+    library(broom)
+  }else{message("Package broom is required. Please install it.")}
 
 
   tab1 = NULL
