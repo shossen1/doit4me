@@ -19,6 +19,6 @@ crl_zscore = function(ga_days, crl){
   return(crlz)
 }
 
-crl_zscore(111, 89.7)
+# crl_zscore(111, 89.7)
 # crl_zscore(df$CRL_AVGC, df$M17_RC_GA_BY_MEASUREMENTS)
 
