@@ -1,6 +1,5 @@
 
 
-
 table1 = function(datain, varlist, group){
 
  if("janitor" %in% rownames(installed.packages())){
@@ -11,6 +10,7 @@ table1 = function(datain, varlist, group){
     library(broom)
   }else{message("Package broom is required. Please install it.")}
 
+if(any(grepl("package:plyr", search()))) detach("package:plyr")
 
   tab1 = NULL
   for(i in varlist){
@@ -19,7 +19,7 @@ table1 = function(datain, varlist, group){
 
     if(cat_or_cont(datain$var) == "Continuous"){
       xx = data.frame(datain %>%
-                        group_by(group) %>%
+                        dplyr::group_by(group) %>%
                         summarise(mean = mean(as.numeric(var), na.rm = TRUE),
                                   sd = sd(as.numeric(var), na.rm = TRUE)) %>%
                         mutate(meansd = paste0(sprintf("%3.1f", mean), " (", sprintf("%3.1f", sd), ")")) %>%
