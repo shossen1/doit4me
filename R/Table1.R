@@ -44,15 +44,15 @@ if(any(grepl("package:plyr", search()))) detach("package:plyr")
                         adorn_ns(position = "front") %>%
                         rename(Overall = Total))
 
-      p = substr(format(chisq.test(datain$var, datain$group)$p.value , scientific = F), 1, 6)
+      #p = substr(format(chisq.test(datain$var, datain$group)$p.value , scientific = F), 1, 6)
       xx$var = paste0(i , " (", xx$var, ")")
 
       rownames(xx) = xx$var
-      xx$p = p
+      #xx$p = p
       xx$var = NULL
       #print(names(xx))
     }
-    names(xx) = c(names(table(datain$group)), "Overall","p")
+    names(xx) = c(names(table(datain$group)), "Overall")
     tab1 = rbind(tab1, xx)
   }
   return(tab1)
