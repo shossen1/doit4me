@@ -1,7 +1,6 @@
 table1x = function(datain, varlist, group){
   tab1 = NULL
   for(i in varlist){
-    print(i)
     datain$var = datain[[gsub("[()]", "", gsub('factor', '', i))]]
     datain$group = datain[[gsub("[()]", "", gsub('factor', '', group))]]
 
