@@ -1,8 +1,8 @@
 table1x = function(datain, varlist, group){
   tab1 = NULL
   for(i in varlist){
-    datain$var = datain[[gsub("[()]", "", gsub('factor', '', i))]]
-    datain$group = datain[[gsub("[()]", "", gsub('factor', '', group))]]
+    datain$var = datain[[gsub("[()]", "", gsub('factor', '', i,useBytes = TRUE), useBytes = TRUE)]]
+    datain$group = datain[[gsub("[()]", "", gsub('factor', '', group, useBytes = TRUE), useBytes = TRUE)]]
 
     if(grepl("factor", i) == "FALSE"){
       xx = data.frame(datain %>%
