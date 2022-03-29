@@ -29,7 +29,7 @@ forestplot = function(datalist = datalist,
                       vline.size = 1,
                       slash.gap = 2,
                       n.lab = TRUE,
-                      shade.var = c(1, 5, 7)){
+                      shade.var = NULL){
   frm <- as.formula(frm)
   var = word(as.character(frm[3]), 1)
 
@@ -47,7 +47,7 @@ forestplot = function(datalist = datalist,
   if(deparse(substitute(stat)) == "glm"){
     tab = NULL
     for(i in 1:length(datalist)){
-      fit = tidy(stat(frm, data = datalist[[i]]), exponentiate = T, conf.int = TRUE)
+      fit = tidy(stat(frm, family = binomial(link = "logit"), data = datalist[[i]]), exponentiate = T, conf.int = TRUE)
       or = fit$estimate[fit$term == var]
       lb = fit$conf.low[fit$term == var]
       ub = fit$conf.high[fit$term == var]
