@@ -2,8 +2,8 @@ forestplot = function(datalist = datalist,
                       frm = case ~ dosebin + strata(id),
                       stat = clogit,
                       y.lab = y.lab,
-                      exp = 1,
-                      rev = 1,
+                      exp = TRUE,
+                      rev = NULL,
                       perc = 1,
                       round = 2,
                       sectionhead = NA,
@@ -47,7 +47,7 @@ forestplot = function(datalist = datalist,
   if(deparse(substitute(stat)) == "glm"){
     tab = NULL
     for(i in 1:length(datalist)){
-      fit = tidy(stat(frm, family = binomial(link = "logit"), data = datalist[[i]]), exponentiate = T, conf.int = TRUE)
+      fit = tidy(stat(frm, family = binomial(link = "logit"), data = datalist[[i]]), exponentiate = F, conf.int = TRUE)
       or = fit$estimate[fit$term == var]
       lb = fit$conf.low[fit$term == var]
       ub = fit$conf.high[fit$term == var]
@@ -60,10 +60,10 @@ forestplot = function(datalist = datalist,
 
   ######
   if(exp == "TRUE" | exp == "T"){tab[,c(1:3)] = exp(tab[,c(1:3)])}
-  if(rev == "TRUE" | rev == "T"){
-    tab[,c(1:3)] <- (1- tab[,c(1:3)])
-    tab <- tab[,c(1, 3, 2, 4)]
-  }
+  # if(rev == "TRUE" | rev == "T"){
+  #   tab[,c(1:3)] <- (1- tab[,c(1:3)])
+  #   tab <- tab[,c(1, 3, 2, 4)]
+  # }
   if(perc == "TRUE" | perc == "T"){tab[,c(1:3)] = tab[,c(1:3)]*100}
   tab$lab = paste0(sprintf(paste0("%3.",round,"f"),tab[[1]],1)," (",
                    sprintf(paste0("%3.",round,"f"),tab[[2]]), " to ",
