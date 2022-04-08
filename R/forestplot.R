@@ -144,3 +144,11 @@ forestplot = function(datalist = datalist,
 
   return(list(tab2, p))
 }
+
+
+
+forestplot(datalist = c(he412),
+           frm = case ~ dosebin + strata(id))
+
+
+
