@@ -1,3 +1,5 @@
+library(stringi)
+
 forestplot = function(datalist = datalist,
                       frm = case ~ dosebin + strata(id),
                       stat = clogit,
