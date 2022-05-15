@@ -32,8 +32,9 @@ forestplot = function(datalist = datalist,
                       slash.gap = 2,
                       n.lab = TRUE,
                       shade.var = NULL){
+  library(stringr)
   frm <- as.formula(frm)
-  var = word(as.character(frm[3]), 1)
+  var = stringr::word(as.character(frm[3]), 1)
 
   if(deparse(substitute(stat)) == "clogit"){
     tab = NULL
