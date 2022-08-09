@@ -20,8 +20,8 @@ table1x = function(datain, varlist, group){
       rownames(xx) = paste0(i, " mean(SD)")
       colnames(xx) = names(table(datain$group))
 
-      xx$Overall = paste0(sprintf("%3.1f", round(mean(datain$var, na.rm = TRUE, 1))), " (",
-                          sprintf("%3.1f", round(sd(datain$var, na.rm = TRUE, 1))), ")")
+      xx$Overall = paste0(sprintf("%3.1f", round(mean(datain$var, na.rm = TRUE), 1)), " (",
+                          sprintf("%3.1f", round(sd(datain$var, na.rm = TRUE), 1)), ")")
 
       xx$p = substr(format(tidy(aov(var ~ group, data = datain))$p.value[1], scientific = F), 1, 6)
       #print(names(xx))
