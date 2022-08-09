@@ -9,14 +9,15 @@ table1x = function(datain, varlist, group){
                         dplyr::group_by(group) %>%
                         dplyr::summarise(mean = mean(as.numeric(var), na.rm = TRUE),
                                          sd = sd(as.numeric(var), na.rm = TRUE)) %>%
-                        dplyr::mutate(meansd = paste0(sprintf("%3.1f", mean), " (", sprintf("%3.1f", sd), ")")) %>%
+                        dplyr::mutate(meansd = paste0(sprintf("%3.1f", round(mean, 1)), " (",
+                                                      sprintf("%3.1f", round(sd, 1)), ")")) %>%
                         dplyr::select(meansd) %>%
                         t())
       rownames(xx) = paste0(i, " mean(SD)")
       colnames(xx) = names(table(datain$group))
 
-      xx$Overall = paste0(sprintf("%3.1f", mean(datain$var, na.rm = TRUE)), " (",
-                          sprintf("%3.1f", sd(datain$var, na.rm = TRUE)), ")")
+      xx$Overall = paste0(sprintf("%3.1f", round(mean(datain$var, na.rm = TRUE, 1))), " (",
+                          sprintf("%3.1f", round(sd(datain$var, na.rm = TRUE, 1))), ")")
 
       xx$p = substr(format(tidy(aov(var ~ group, data = datain))$p.value[1], scientific = F), 1, 6)
       #print(names(xx))
