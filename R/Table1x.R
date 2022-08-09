@@ -1,4 +1,8 @@
 table1x = function(datain, varlist, group){
+
+  library(janitor)
+  library(broom)
+
   tab1 = NULL
   for(i in varlist){
     datain$var = datain[[gsub("[()]", "", gsub('factor', '', i,useBytes = TRUE), useBytes = TRUE)]]
@@ -32,7 +36,17 @@ table1x = function(datain, varlist, group){
                         adorn_ns(position = "front") %>%
                         dplyr::rename(Overall = Total))
 
-      p = substr(format(chisq.test(datain$var, datain$group)$p.value , scientific = F), 1, 6)
+
+chisqtry <- try(chisq.test(datain$var, datain$group))
+
+if(class(chisqtry)[1] == "try-error"){
+  p = substr(format(fisher.test(table(df.base$var, df.base$group))$p.value , scientific = F), 1, 6)
+  message(paste0("Using Fisher's exact test for", var))
+}
+if(class(chisqtry)[1] != "try-error"){
+  p = substr(format(chisq.test(datain$var, datain$group)$p.value , scientific = F), 1, 6)
+  }
+
       xx$var = paste0(i , " (", xx$var, ")")
 
       rownames(xx) = xx$var
