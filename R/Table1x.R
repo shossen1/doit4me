@@ -40,7 +40,7 @@ table1x = function(datain, varlist, group){
 chisqtry <- try(chisq.test(datain$var, datain$group))
 
 if(class(chisqtry)[1] == "try-error"){
-  p = substr(format(fisher.test(table(df.base$var, df.base$group))$p.value , scientific = F), 1, 6)
+  p = substr(format(fisher.test(table(datain$var, datain$group))$p.value , scientific = F), 1, 6)
   message(paste0("Using Fisher's exact test for", var))
 }
 if(class(chisqtry)[1] != "try-error"){
