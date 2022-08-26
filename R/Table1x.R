@@ -7,6 +7,7 @@ table1x = function(datain, varlist, group = NULL){
 
     tab1 = NULL
     for(i in varlist){
+
       datain$var = datain[[gsub("[()]", "", gsub('factor', '', i,useBytes = TRUE), useBytes = TRUE)]]
 
       if(grepl("factor", i) == "FALSE"){
@@ -24,10 +25,9 @@ table1x = function(datain, varlist, group = NULL){
       if(grepl("factor", i) == "TRUE"){
         xx = data.frame(datain %>%
                           tabyl(var) %>%
-                          adorn_totals("col") %>%
-                          adorn_percentages("col") %>%
                           adorn_pct_formatting(digits = 1) %>%
-                          adorn_ns(position = "front"))
+                          dplyr::mutate(n = paste0(n, " (", percent, ")")) %>%
+                          dplyr::select(var, n))
 
         xx$var = paste0(i , " (", xx$var, ")")
 
@@ -35,6 +35,7 @@ table1x = function(datain, varlist, group = NULL){
         xx$var = NULL
       }
       names(xx) = ""
+      print(xx)
       tab1 = rbind(tab1, xx)
     }
 
