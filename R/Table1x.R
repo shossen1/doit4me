@@ -35,7 +35,6 @@ table1x = function(datain, varlist, group = NULL){
         xx$var = NULL
       }
       names(xx) = ""
-      print(xx)
       tab1 = rbind(tab1, xx)
     }
 
