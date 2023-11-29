@@ -1,6 +1,6 @@
 
-fun.ecdf = function(datain, group, x, x.lab, x.limits, x.breaks, y, fct = NULL){
-  if(group == "sitee"){lab = c("Lima", "Tumbes", "Urban Puno", "Rural Puno")} else {lab = c("Alive", "Dead")}
+fun.ecdf = function(datain, group, x, x.lab, x.limits, x.breaks, y, fct = NULL, lab){
+  #if(group == "sitee"){lab = c("Lima", "Tumbes", "Urban Puno", "Rural Puno")} else {lab = c("Alive", "Dead")}
   
   p1 = 
     ggplot(data = datain, aes(x = datain[[x]])) +
